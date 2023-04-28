@@ -3,13 +3,17 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
+import { ICommandPalette } from '@jupyterlab/apputils';
+
 /**
  * Initialization data for the jlxd extension.
  */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jlxd:plugin',
   autoStart: true,
-  activate: (app: JupyterFrontEnd) => {
+  requires: [ ICommandPalette ],
+  activate: (app: JupyterFrontEnd,
+             palette: ICommandPalette) => {
     console.log('JupyterLab extension jlxd is activated!');
 
     let commandId = 'jlxd:Hello';
@@ -18,8 +22,10 @@ const plugin: JupyterFrontEndPlugin<void> = {
          execute: do_something
        });
 
-    app.commands.execute(commandId);
-
+    palette.addItem( {
+       command: commandId,
+       category: 'Anything'
+       });
   }
 };
 
