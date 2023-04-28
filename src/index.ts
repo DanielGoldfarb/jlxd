@@ -4,6 +4,8 @@ import {
 } from '@jupyterlab/application';
 
 import { ICommandPalette } from '@jupyterlab/apputils';
+import { Widget }          from '@lumino/widgets';
+import { MainAreaWidget }  from '@jupyterlab/apputils';
 
 /**
  * Initialization data for the jlxd extension.
@@ -22,7 +24,9 @@ function _activate(app: JupyterFrontEnd,
    let commandId = 'jlxd:Hello';
    app.commands.addCommand(commandId,
       { label: 'Hello World',
-        execute: do_something
+        execute: () => {
+           do_something(app);
+        }
       });
 
    palette.addItem( {
@@ -31,8 +35,26 @@ function _activate(app: JupyterFrontEnd,
       });
 }
 
-function do_something() {
-   console.log('jlxd says "Hello World!"');
+class HelloWorldWidget extends Widget {
+   constructor() {
+      super();
+      this.id = 'hello-world';
+      this.title.label = 'Hello World';
+      this.title.closable = true;
+      let body = document.createElement('body');
+      let heading = document.createElement('h1');
+      heading.innerText = 'Hello World from JupyterCon 2023!';
+      body.appendChild(heading);
+      this.node.appendChild(body);
+   }
+}
+
+function do_something(app: JupyterFrontEnd) {
+   let content = new HelloWorldWidget();
+   let widget  = new MainAreaWidget({content});
+
+   app.shell.add(widget,'main');
+   app.shell.activateById(widget.id);
 }
 
 export default plugin;
