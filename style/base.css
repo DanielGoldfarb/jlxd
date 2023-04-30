@@ -1,5 +1,18 @@
 /*
     See the JupyterLab Developer Guide for useful CSS Patterns:
-
     https://jupyterlab.readthedocs.io/en/stable/developer/css.html
 */
+
+.hww body {
+   height: 100%;
+   position: relative;
+   text-align: center;
+   background-color: powderblue;
+}
+
+.hww h1 {
+   position: absolute;
+   top: 38%;
+   left: 0;
+   right: 0;
+}
