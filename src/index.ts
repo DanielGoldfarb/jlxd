@@ -6,6 +6,7 @@ import {
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { Widget }          from '@lumino/widgets';
 import { MainAreaWidget }  from '@jupyterlab/apputils';
+import { ILauncher }       from '@jupyterlab/launcher';
 
 /**
  * Initialization data for the jlxd extension.
@@ -13,12 +14,14 @@ import { MainAreaWidget }  from '@jupyterlab/apputils';
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jlxd:plugin',
   autoStart: true,
-  requires: [ ICommandPalette ],
+  requires: [ ICommandPalette],
+  optional: [ ILauncher ],
   activate: _activate
 };
 
 function _activate(app: JupyterFrontEnd,
-                   palette: ICommandPalette) {
+                   palette: ICommandPalette,
+                   launcher: ILauncher|null) {
    console.log('JupyterLab extension jlxd is activating!');
 
    let commandId = 'jlxd:Hello';
@@ -33,6 +36,15 @@ function _activate(app: JupyterFrontEnd,
       command: commandId,
       category: 'Anything'
       });
+
+   if (launcher) {
+      launcher.add({
+         command: commandId,
+         category: 'Notebook'
+      });
+   } else {
+      console.log('ILauncher is not available');
+   }
 }
 
 class HelloWorldWidget extends Widget {
