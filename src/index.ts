@@ -47,7 +47,7 @@ function _activate(app: JupyterFrontEnd,
       console.log('ILauncher is not available');
    }
 
-   let sbwidget = new SideBarHelloWidget();
+   let sbwidget = new SideBarHelloWidget(app,commandId);
    app.shell.add(sbwidget,'left');
    app.shell.activateById(sbwidget.id);
 }
@@ -72,20 +72,26 @@ class HelloWorldWidget extends Widget {
 }
 
 class SideBarHelloWidget extends Widget {
-   constructor() {
+   constructor(app: JupyterFrontEnd, commandId: string) {
       super();
       this.id = 'sidebar-hello';
       this.title.label = 'Hello World';
       this.title.closable = true;
       this.addClass('sbhw');
       let body = document.createElement('body');
-      let b1 = document.createElement('button');
-      let b2 = document.createElement('button');
-      let b3 = document.createElement('button');
-      b1.innerText = 'E';
-      b2.innerText = 'F';
-      b3.innerText = 'G';
-      body.append(b1,b2,b3);
+      let button_info: Record<string,string> = {
+         'E':'Hello World!',
+         'F':'Bonjour le Monde!',
+         'G':'Γειά σου Κόσμε!'
+      }
+      for (const key in button_info) {
+         let b = document.createElement('button');
+         b.innerText = key;
+         b.addEventListener('click', () => {
+            app.commands.execute(commandId,{greeting:button_info[key]});
+         });
+         body.appendChild(b);
+      }
       this.node.appendChild(body);
    }
 }
