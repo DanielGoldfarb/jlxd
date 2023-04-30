@@ -27,14 +27,15 @@ function _activate(app: JupyterFrontEnd,
    let commandId = 'jlxd:Hello';
    app.commands.addCommand(commandId,
       { label: 'Hello World',
-        execute: () => {
-           do_something(app);
+        execute: (args: any) => {
+           say_hello(app,args);
         }
       });
 
    palette.addItem( {
       command: commandId,
-      category: 'Anything'
+      category: 'Anything',
+      args: {greeting: 'Hello from the Command Palette'}
       });
 
    if (launcher) {
@@ -48,7 +49,7 @@ function _activate(app: JupyterFrontEnd,
 }
 
 class HelloWorldWidget extends Widget {
-   constructor() {
+   constructor(greeting: string|null) {
       super();
       this.id = 'hello-world';
       this.title.label = 'Hello World';
@@ -56,14 +57,18 @@ class HelloWorldWidget extends Widget {
       this.addClass('hww');
       let body = document.createElement('body');
       let heading = document.createElement('h1');
-      heading.innerText = 'Hello World from JupyterCon 2023!';
+      if (greeting) {
+         heading.innerText = greeting;
+      } else {
+         heading.innerText = 'Hello World from JupyterCon 2023!';
+      }
       body.appendChild(heading);
       this.node.appendChild(body);
    }
 }
 
-function do_something(app: JupyterFrontEnd) {
-   let content = new HelloWorldWidget();
+function say_hello(app: JupyterFrontEnd, args: any) {
+   let content = new HelloWorldWidget(args['greeting']);
    let widget  = new MainAreaWidget({content});
 
    app.shell.add(widget,'main');
