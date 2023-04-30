@@ -46,6 +46,10 @@ function _activate(app: JupyterFrontEnd,
    } else {
       console.log('ILauncher is not available');
    }
+
+   let sbwidget = new SideBarHelloWidget();
+   app.shell.add(sbwidget,'left');
+   app.shell.activateById(sbwidget.id);
 }
 
 class HelloWorldWidget extends Widget {
@@ -63,6 +67,25 @@ class HelloWorldWidget extends Widget {
          heading.innerText = 'Hello World from JupyterCon 2023!';
       }
       body.appendChild(heading);
+      this.node.appendChild(body);
+   }
+}
+
+class SideBarHelloWidget extends Widget {
+   constructor() {
+      super();
+      this.id = 'sidebar-hello';
+      this.title.label = 'Hello World';
+      this.title.closable = true;
+      this.addClass('sbhw');
+      let body = document.createElement('body');
+      let b1 = document.createElement('button');
+      let b2 = document.createElement('button');
+      let b3 = document.createElement('button');
+      b1.innerText = 'E';
+      b2.innerText = 'F';
+      b3.innerText = 'G';
+      body.append(b1,b2,b3);
       this.node.appendChild(body);
    }
 }
