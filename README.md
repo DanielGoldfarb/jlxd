@@ -1,76 +1,14 @@
 # jlxd
+### A JupyterLab extension demo:
 
-[![Github Actions Status](https://github.com/github_username/jlxd/workflows/Build/badge.svg)](https://github.com/github_username/jlxd/actions/workflows/build.yml)
-A JupyterLab extension.
-
-## Requirements
-
-- JupyterLab >= 3.0
-
-## Install
-
-To install the extension, execute:
-
-```bash
-pip install jlxd
-```
-
-## Uninstall
-
-To remove the extension, execute:
-
-```bash
-pip uninstall jlxd
-```
-
-## Contributing
-
-### Development install
-
-Note: You will need NodeJS to build the extension package.
-
-The `jlpm` command is JupyterLab's pinned version of
-[yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
-`yarn` or `npm` in lieu of `jlpm` below.
-
-```bash
-# Clone the repo to your local environment
-# Change directory to the jlxd directory
-# Install package in development mode
-pip install -e "."
-# Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite
-# Rebuild extension Typescript source after making changes
-jlpm build
-```
-
-You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
-
-```bash
-# Watch the source directory in one terminal, automatically rebuilding when needed
-jlpm watch
-# Run JupyterLab in another terminal
-jupyter lab
-```
-
-With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
-
-By default, the `jlpm build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
-
-```bash
-jupyter lab build --minimize=False
-```
-
-### Development uninstall
-
-```bash
-pip uninstall jlxd
-```
-
-In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
-command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `jlxd` within that folder.
-
-### Packaging the extension
-
-See [RELEASE](RELEASE.md)
+- [`Step 0 :` **`cookiecutter extension`**](https://github.com/DanielGoldfarb/jlxd/blob/18ba182ec17c0012e2334bc54923235b52db54da/src/index.ts)
+- [`Step 1 :` **`create a command to do_something`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP0...STEP1)
+- [`Step 2 :` **`exec our command from ICommandPalette`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP1...STEP2)
+- [`Step 3a:` **`split out activate function`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP2...STEP3a)
+- [`Step 3b:` **`command adds widget to main area`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP3a...STEP3b)
+- [`Step 4 :` **`style the widget`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP3b...STEP4)
+- [`Step 5 :` **`exec command from ILauncher`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP4...STEP5)
+- [`Step 6a:` **`pass args into command and widget`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP5...STEP6a)
+- [`Step 6b:` **`add sidebar widget w/3 buttons`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP6a...STEP6b)
+- [`Step 6c:` **`style our sidebar widget`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP6b...STEP6c)
+- [`Step 6d:` **`Add Event Listeners to buttons`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP6c...STEP6d)
