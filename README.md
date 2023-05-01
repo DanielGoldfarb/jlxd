@@ -1,6 +1,26 @@
 # jlxd
 ### A JupyterLab extension demo:
 
+---
+
+#### First create a virtual environment: (conda, mamba, python)
+
+```bash
+conda create -n jlxd --override-channels --strict-channel-priority \
+-c conda-forge - nodefaults \
+jupyterlab=3 cookiecutter nodejs jupyter-packaging
+```
+
+---
+
+#### Create a cookiecutter labextension:
+
+**`cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts`**
+
+---
+
+#### Code:
+
 - [`Step 0 :` **`cookiecutter extension`**](https://github.com/DanielGoldfarb/jlxd/blob/18ba182ec17c0012e2334bc54923235b52db54da/src/index.ts)
 - [`Step 1 :` **`create a command to do_something`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP0...STEP1)
 - [`Step 2 :` **`exec our command from ICommandPalette`**](https://github.com/DanielGoldfarb/jlxd/compare/STEP1...STEP2)
