@@ -24,7 +24,8 @@ if args.step in steps:
 elif args.step == 'list':
    print('Valid steps:\n',list(steps.keys()))
 else:
-   print('step "'+args.step+'" NOT FOUND!')
+   print('\nstep "'+args.step+'" NOT FOUND!')
+   print('Valid steps:\n',list(steps.keys()))
    sys.exit(1)
 
 sys.exit(0)
