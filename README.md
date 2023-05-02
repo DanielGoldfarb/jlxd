@@ -7,7 +7,7 @@
 
 ```bash
 conda create -n jlxd --override-channels --strict-channel-priority \
--c conda-forge - nodefaults \
+-c conda-forge -c nodefaults \
 jupyterlab=3 cookiecutter nodejs jupyter-packaging
 ```
 
