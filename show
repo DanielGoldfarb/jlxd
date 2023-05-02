@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("step", help="step to diff with previous step")
+args = parser.parse_args()
+
+steps = dict(step1='step0b step1',
+             step2='step1 step2',
+             step3a='step2 step3a',
+             step3b='step3a step3b',
+             step4='step3b step4',
+             step5='step4 step5',
+             step6a='step5 step6a',
+             step6b='step6a step6b',
+             step6c='step6b step6c',
+             step6d='step6c step6d',)
+
+if args.step in steps:
+   os.system('git difftool --no-prompt '+steps[args.step])
+elif args.step == 'list':
+   print('Valid steps:\n',list(steps.keys()))
+else:
+   print('step "'+args.step+'" NOT FOUND!')
+   sys.exit(1)
+
+sys.exit(0)
