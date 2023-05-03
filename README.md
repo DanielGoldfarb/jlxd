@@ -3,7 +3,7 @@
 
 ---
 
-#### First create a virtual environment: (conda, mamba, python)
+#### First create a virtual environment: (conda, mamba, python venv)
 
 ```bash
 conda create -n jlxd --override-channels --strict-channel-priority \
